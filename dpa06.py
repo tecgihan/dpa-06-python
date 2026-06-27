@@ -1,6 +1,6 @@
 """DPA-06 control library.
 
-テックギハン製 6 軸力覚センサ用アンプ **DPA-06** を Python から制御するための
+テック技販製 6 軸力覚センサ用アンプ **DPA-06** を Python から制御するための
 メインモジュール。既存ライブラリ（forceplate-python / dss300-hr-python など）と
 同じ作法で、FTDI D2XX 経由の ASCII コマンド／バイナリパケット通信を扱う。
 

@@ -26,7 +26,7 @@ class FtdiError(IOError):
 class FtdiComm:
     """DPA-06 用 FTDI D2XX 通信ラッパ。
 
-    既存のテックギハン製ライブラリと同様、デバイスは Description
+    既存のテック技販製ライブラリと同様、デバイスは Description
     （既定で ``"DPA-06"``）でオープンする。
     """
 
