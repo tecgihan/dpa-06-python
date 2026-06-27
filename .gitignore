@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# 測定出力
+out/
+*.csv
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
