@@ -90,7 +90,7 @@ class OutCh(IntEnum):
 IN_CH_COUNT = len(InCh)
 OUT_CH_COUNT = len(OutCh)
 
-# ファームウェアが受け付ける値（command.c より）
+# デバイスが受け付ける値
 VALID_FREQUENCIES = (240, 100, 500, 1000, 5000, 10000)
 VALID_MATOME = (24, 10, 50, 100, 500, 1000)
 
@@ -398,7 +398,7 @@ class Dpa06:
 
         内部的には ``GET_ITF_6X12_xx`` を送る（応答は ``ITF_6X12_<値>``）。
         item は 6 軸センサで有効な 6x6 の範囲（0..35）に対応し、これが実際の
-        力演算（ファームウェアの CalcK）で使われる干渉補正行列。
+        力演算で使われる干渉補正行列。
         """
         if not 0 <= item <= 35:
             raise ValueError("ITF の item は 0..35（出力ch * 6 + 入力ch）の範囲です。")
@@ -465,8 +465,8 @@ class Dpa06:
     def set_itf(self, value: float, item: int) -> None:
         """干渉補正係数の 1 要素を設定する（item: 0..35 = 出力ch * 6 + 入力ch、IDLE 時のみ）。
 
-        内部的には ``SET_ITF_6X12_xx`` を送る。この書き込みでファームウェアが
-        係数を再計算（CalcK）し、以降の測定出力に反映される。
+        内部的には ``SET_ITF_6X12_xx`` を送る。この書き込みでデバイスが
+        係数を再計算し、以降の測定出力に反映される。
         """
         if not 0 <= item <= 35:
             raise ValueError("ITF の item は 0..35（出力ch * 6 + 入力ch）の範囲です。")

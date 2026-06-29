@@ -1,6 +1,6 @@
 """DPA-06 の NOW 応答・測定パケットの解析。
 
-測定パケットのフォーマット（ファームウェア ``buffer.c`` で確定）::
+測定パケットのフォーマット（デバイス仕様）::
 
     [0xAA × 4]                       ヘッダ
     [6ch × 符号付き int16 LE] × まとめ数   ボディ
@@ -8,7 +8,7 @@
 
     packet_size = 4 + 6 * 2 * matome + 4
 
-* 値は符号付き 16bit（FW の ``short``、ADCGetDAData の出力）。
+* 値は符号付き 16bit。
 * バッファオーバーフロー時、デバイスは全 0 のパケット（ヘッダ無し）を返す。
 * NOW 応答は 6ch × int16 LE の 12 バイト（ヘッダ／フッタ無し）。
 """
@@ -66,8 +66,8 @@ def body_size(matome: int) -> int:
 def parse_robot_hex(line: str) -> np.ndarray:
     """ロボットモードの 1 サンプル（16進 ASCII）を ``(6,)`` int16 で返す。
 
-    ファームウェア ``measure.c`` の ``ToStr`` は、各チャンネル（符号付き
-    16bit）を上位ニブルから 4 桁の大文字 16 進で出力する。6ch で 24 文字。
+    各チャンネル（符号付き 16bit）が上位ニブルから 4 桁の大文字 16 進で
+    出力される。6ch で 24 文字。
     """
     line = line.strip()
     if len(line) != CH_COUNT * 4:
